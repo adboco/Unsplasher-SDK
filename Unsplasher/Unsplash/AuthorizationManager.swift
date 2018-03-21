@@ -43,6 +43,8 @@ final class UnsplashAuthViewController: UIViewController {
     /// Completion handler
     var completionHandler: (AuthorizationResult) -> Void
     
+    let webView = UIWebView()
+    
     init(url: URL, callbackURLScheme: String, completion: @escaping (AuthorizationResult) -> Void) {
         self.authURL = url
         self.callbackURLScheme = callbackURLScheme
@@ -59,10 +61,13 @@ final class UnsplashAuthViewController: UIViewController {
         super.loadView()
         
         let cancel = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancel(sender:)))
+        let refresh = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(refresh(sender:)))
+        
         self.navigationItem.title = "Unsplash"
         self.navigationItem.leftBarButtonItem = cancel
+        self.navigationItem.rightBarButtonItem = refresh
         
-        let webView = UIWebView(frame: self.view.frame)
+        webView.frame = self.view.frame
         webView.backgroundColor = UIColor.white
         webView.delegate = self
         
@@ -84,6 +89,11 @@ final class UnsplashAuthViewController: UIViewController {
         self.dismiss(animated: true, completion: {
             self.completionHandler(.failure(UnsplashError.cancelAuthenticationError))
         })
+    }
+    
+    @objc func refresh(sender: UIBarButtonItem) {
+        let urlRequest = URLRequest(url: authURL)
+        webView.loadRequest(urlRequest)
     }
     
 }
