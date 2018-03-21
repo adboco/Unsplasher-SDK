@@ -111,6 +111,7 @@ class ViewController: UIViewController {
                     getUser()
                     getPhotos()
                 case .failure(let error):
+                    activityIndicator.stopAnimating()
                     print("Error: " + error.localizedDescription)
                 }
             }

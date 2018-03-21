@@ -63,9 +63,18 @@ final class UnsplashAuthViewController: UIViewController {
         self.navigationItem.leftBarButtonItem = cancel
         
         let webView = UIWebView(frame: self.view.frame)
+        webView.backgroundColor = UIColor.white
         webView.delegate = self
         
         self.view.addSubview(webView)
+        
+        let margins = self.view.layoutMarginsGuide
+        NSLayoutConstraint.activate([
+            webView.leadingAnchor.constraint(equalTo: margins.leadingAnchor),
+            webView.trailingAnchor.constraint(equalTo: margins.trailingAnchor),
+            webView.topAnchor.constraint(equalTo: margins.topAnchor),
+            webView.bottomAnchor.constraint(equalTo: margins.bottomAnchor)
+        ])
         
         let urlRequest = URLRequest(url: authURL)
         webView.loadRequest(urlRequest)
