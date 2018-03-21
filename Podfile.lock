@@ -1,0 +1,33 @@
+PODS:
+  - Alamofire (4.6.0)
+  - Hero (1.0.1)
+  - Hue (3.0.1)
+  - Kingfisher (4.6.1)
+  - LGButton (1.0.5)
+  - SnapKit (4.0.0)
+  - SwiftKeychainWrapper (3.0.1)
+  - VegaScrollFlowLayout (1.1)
+
+DEPENDENCIES:
+  - Alamofire
+  - Hero
+  - Hue
+  - Kingfisher (~> 4.0)
+  - LGButton
+  - SnapKit
+  - SwiftKeychainWrapper
+  - VegaScrollFlowLayout
+
+SPEC CHECKSUMS:
+  Alamofire: f41a599bd63041760b26d393ec1069d9d7b917f4
+  Hero: cee286821578e170d8c0c9c9cda7897357401112
+  Hue: 93e852fa6211ab35922ad8c293f51c43d6c79eb2
+  Kingfisher: 1f9157d9c02b380cbd0b7cc890161195164eb634
+  LGButton: 707ce916eb80b73a6c4688df34bee11adbafb663
+  SnapKit: a42d492c16e80209130a3379f73596c3454b7694
+  SwiftKeychainWrapper: 38952a3636320ae61bad3513cadd870929de7a4a
+  VegaScrollFlowLayout: 9158061f29179147755f937c2b21693fc5dbbac3
+
+PODFILE CHECKSUM: f6ded6c97ac0c0186c90641c539594a00d275a8f
+
+COCOAPODS: 1.3.1
