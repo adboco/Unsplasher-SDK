@@ -18,7 +18,7 @@ pod "UnsplasherSDK"
 
 ## Usage
 ```swift
-import Unsplasher
+import UnsplasherSDK
 ```
 
 First thing you need is to configure the Unsplash instance with your credentials and scopes. Do it, for example, in your AppDelegate:
