@@ -28,8 +28,7 @@ Pod::Spec.new do |s|
                    Unsplash API client written in Swift. It supports user authentication and all the features available in the official API.
                    DESC
 
-  s.homepage     = "http://EXAMPLE/UnsplasherSDK"
-  # s.screenshots  = "www.example.com/screenshots_1.gif", "www.example.com/screenshots_2.gif"
+  s.homepage     = "https://github.com/adboco/Unsplasher-SDK"
 
 
   # ―――  Spec License  ――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
@@ -76,8 +75,7 @@ Pod::Spec.new do |s|
   #  Supports git, hg, bzr, svn and HTTP.
   #
 
-  s.source = { :path => '.' }
-  # s.source       = { :git => "http://EXAMPLE/UnsplasherSDK.git", :tag => "#{s.version}" }
+  s.source       = { :git => "https://github.com/adboco/Unsplasher-SDK.git", :tag => "#{s.version}" }
 
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
