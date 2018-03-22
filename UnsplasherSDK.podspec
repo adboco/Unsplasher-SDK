@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "UnsplasherSDK"
-  s.version      = "v1.0.1"
+  s.version      = "1.0.1"
   s.summary      = "Unsplash API client written in Swift."
 
   # This description is used to generate tags and improve search results.
@@ -75,7 +75,7 @@ Pod::Spec.new do |s|
   #  Supports git, hg, bzr, svn and HTTP.
   #
 
-  s.source       = { :git => "https://github.com/adboco/Unsplasher-SDK.git", :tag => "#{s.version}" }
+  s.source       = { :git => "https://github.com/adboco/Unsplasher-SDK.git", :tag => "v#{s.version}" }
 
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #

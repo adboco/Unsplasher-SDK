@@ -1,5 +1,5 @@
 # UNSPLASHER SDK
-![build](https://img.shields.io/badge/build-passing-green.svg) ![platform](https://img.shields.io/badge/platform-iOS%209.0%2B-lightgrey.svg) ![platform](https://img.shields.io/badge/xcode-9.0%2B-lightgrey.svg) ![swift version](https://img.shields.io/badge/swift-4.0-orange.svg) ![cocoapods](https://img.shields.io/badge/pod-1.0-blue.svg)
+![build](https://img.shields.io/badge/build-passing-green.svg) ![platform](https://img.shields.io/badge/platform-iOS%209.0%2B-lightgrey.svg) ![platform](https://img.shields.io/badge/xcode-9.0%2B-lightgrey.svg) ![swift version](https://img.shields.io/badge/swift-4.0-orange.svg) ![cocoapods](https://img.shields.io/badge/pod-v1.0.1-blue.svg)
 
 An Unsplash API client written in Swift. It supports user authentication, likes, manage collections and every feature of the [official API](https://unsplash.com/documentation).
 
@@ -224,7 +224,7 @@ searchClient.collections(query: "urban", page: 2, perPage: 25) { result in
 ```
 
 ### Pagination
-There is a simple way to iterate over pages if you use an paginated request. Here is an example:
+There is a simple way to iterate over pages if you use a paginated request. Here's an example:
 ```swift
 // Get next page of the current request
 photosClient.next { result in 
