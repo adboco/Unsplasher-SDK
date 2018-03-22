@@ -24,9 +24,9 @@ import UnsplasherSDK
 First thing you need is to configure the Unsplash instance with your credentials and scopes. Do it, for example, in your AppDelegate:
 ```swift
 // Setup application ID and Secret
-Unsplash.configure(appId: appId, secret: secret, scopes: Unsplash.PermissionScope.all) // All scopes
+Unsplash.configure(appId: "{YOUR_APPLICATION_ID}", secret: "{YOUR_SECRET}", scopes: Unsplash.PermissionScope.all) // All scopes
 // or
-Unsplash.configure(appId: appId, secret: secret, scopes: [.readUser, .writeLikes, ...]) // Specific scopes
+Unsplash.configure(appId: "{YOUR_APPLICATION_ID}", secret: "{YOUR_SECRET}", scopes: [.readUser, .writeLikes, ...]) // Specific scopes
 ```
 
 ### Authentication
@@ -42,6 +42,8 @@ Unsplash.shared.authenticate(self) { result in
 	}
 }
 ```
+
+> _Note:_ Make sure your Authorization callback URL is set to ``unsplash-{YOUR_APPLICATION_ID}://token``.
 
 ### Current User
 ```swift
