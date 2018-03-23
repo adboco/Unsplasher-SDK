@@ -1,5 +1,5 @@
 # UNSPLASHER SDK
-![build](https://img.shields.io/badge/build-passing-green.svg) ![platform](https://img.shields.io/badge/platform-iOS%209.0%2B-lightgrey.svg) ![platform](https://img.shields.io/badge/xcode-9.0%2B-lightgrey.svg) ![swift version](https://img.shields.io/badge/swift-4.0-orange.svg) ![cocoapods](https://img.shields.io/badge/pod-v1.0.1-blue.svg)
+![build](https://img.shields.io/badge/build-passing-green.svg) ![platform](https://img.shields.io/badge/platform-iOS%209.0%2B-lightgrey.svg) ![platform](https://img.shields.io/badge/xcode-9.0%2B-lightgrey.svg) ![swift version](https://img.shields.io/badge/swift-4.0-orange.svg) ![cocoapods](https://img.shields.io/badge/pod-v1.0.2-blue.svg)
 
 An Unsplash API client written in Swift. It supports user authentication, likes, manage collections and every feature of the [official API](https://unsplash.com/documentation).
 
