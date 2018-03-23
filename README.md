@@ -146,7 +146,7 @@ photosClient.unlike(id: photo.id) { result in /* handle the result */ }
 
 // Get a list of random photos
 photosClient.randomPhotos(query: "city", orientation: .landscape, count: 20) { result in /* handle the result */ }
-photosClient.randomPhotos(collectionIds: ["176316"]) { result in /*handle the result */ }
+photosClient.randomPhotos(collectionIds: [176316]) { result in /*handle the result */ }
 
 // Get a random photo
 photosClient.randomPhoto(featured: true, query: "forest", username: "henry") { result in /* handle the result */ }
