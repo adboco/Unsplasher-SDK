@@ -170,10 +170,10 @@ final public class PhotoRequests: Paginable {
     ///   - orientation: Orientation
     ///   - count: Count
     ///   - completion: Completion handler
-    public func randomPhotos(collectionIds: [String]? = nil, featured: Bool? = nil, username: String? = nil, query: String? = nil, width: UInt32? = nil, height: UInt32? = nil, orientation: Unsplash.Orientation? = nil, count: UInt32 = 1, completion: @escaping (PhotoListResult) -> Void) {
+    public func randomPhotos(collectionIds: [UInt32]? = nil, featured: Bool? = nil, username: String? = nil, query: String? = nil, width: UInt32? = nil, height: UInt32? = nil, orientation: Unsplash.Orientation? = nil, count: UInt32 = 1, completion: @escaping (PhotoListResult) -> Void) {
         var parameters: Parameters = [:]
         if let collectionIds = collectionIds {
-            parameters["collections"] = collectionIds.joined(separator: ",")
+            parameters["collections"] = collectionIds.map({ "\($0)" }).joined(separator: ",")
         }
         if let featured = featured {
             parameters["featured"] = featured
@@ -213,10 +213,10 @@ final public class PhotoRequests: Paginable {
     ///   - height: Height
     ///   - orientation: Orientation
     ///   - completion: Completion handler
-    public func randomPhoto(collectionIds: [String]? = nil, featured: Bool? = nil, username: String? = nil, query: String? = nil, width: UInt32? = nil, height: UInt32? = nil, orientation: Unsplash.Orientation? = nil, completion: @escaping (PhotoResult) -> Void) {
+    public func randomPhoto(collectionIds: [UInt32]? = nil, featured: Bool? = nil, username: String? = nil, query: String? = nil, width: UInt32? = nil, height: UInt32? = nil, orientation: Unsplash.Orientation? = nil, completion: @escaping (PhotoResult) -> Void) {
         var parameters: Parameters = [:]
         if let collectionIds = collectionIds {
-            parameters["collections"] = collectionIds.joined(separator: ",")
+            parameters["collections"] = collectionIds.map({ "\($0)" }).joined(separator: ",")
         }
         if let featured = featured {
             parameters["featured"] = featured
