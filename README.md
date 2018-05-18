@@ -232,9 +232,7 @@ There is a simple way to iterate over pages if you use a paginated request. Here
 photosClient.next { result in 
 	switch result {
 	case .success(let photos):
-		for collection in collections {
-			print("\(collection.title), Total photos: \(collection.totalPhotos)")
-		}
+		print("Total photos: \(photos.count)")
 	case .failure(let error):
 		print("Error: " + error.localizedDescription)
 	}
