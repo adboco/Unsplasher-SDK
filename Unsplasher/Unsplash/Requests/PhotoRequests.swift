@@ -59,7 +59,7 @@ final public class PhotoRequests: Paginable {
             parameters["h"] = height
         }
         if let rect = rect {
-            let dimensions = rect.split(separator: ",").flatMap({ UInt32($0) })
+            let dimensions = rect.split(separator: ",").compactMap({ UInt32($0) })
             if dimensions.count == 4 {
                 parameters["rect"] = rect
             }
