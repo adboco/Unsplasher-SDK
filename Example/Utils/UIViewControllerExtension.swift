@@ -65,7 +65,7 @@ extension UIViewController {
         basicAnimation?.duration = 1.0
         basicAnimation?.isRemovedOnCompletion = false
         basicAnimation?.fromValue = gradientLayer?.colors
-        basicAnimation?.toValue = toColors.flatMap({ $0.cgColor })
+        basicAnimation?.toValue = toColors.compactMap({ $0.cgColor })
         
         guard let gradient = gradientLayer, let animation = basicAnimation else {
             return

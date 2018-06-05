@@ -68,7 +68,7 @@ final public class CollectionRequests: Paginable {
             parameters["per_page"] = perPage
         }
         let url = Unsplash.collectionsURLString + (curated ? "/curated/\(collectionId)" : "/\(collectionId)") + "/photos"
-        self.manager.request(url: url, expectedType: [Photo].self, completion: completion)
+        self.manager.request(url: url, parameters: parameters, expectedType: [Photo].self, completion: completion)
     }
     
     /// Get a list of collections related with a given one
