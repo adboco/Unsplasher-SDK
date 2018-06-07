@@ -144,10 +144,6 @@ extension Unsplash {
             completion(.failure(UnsplashError.credentialsError))
             return
         }
-        if let remaining = self.rateLimitRemaining, let limit = self.rateLimit, remaining <= 0 {
-            completion(.failure(UnsplashError.rateLimitError(limit)))
-            return
-        }
         Alamofire.request(url, method: method, parameters: parameters, encoding: URLEncoding.queryString, headers: includeHeaders ? headers(authenticationNeeded: isAuthenticated) : nil)
             .validate(statusCode: 200..<300)
             .responseJSON { (response) in
@@ -155,6 +151,10 @@ extension Unsplash {
                     let rateRemainingString = response.response?.allHeaderFields["x-ratelimit-remaining"] as? String {
                     self.rateLimit = UInt32(rateString)
                     self.rateLimitRemaining = UInt32(rateRemainingString)
+                    if let remaining = self.rateLimitRemaining, let limit = self.rateLimit, remaining <= 0 {
+                        completion(.failure(UnsplashError.rateLimitError(limit)))
+                        return
+                    }
                 }
                 if let linkString = response.response?.allHeaderFields["Link"] as? String {
                     self.retrieveLinks(from: linkString)
