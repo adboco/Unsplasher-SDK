@@ -17,7 +17,7 @@ final public class CollectionRequests: Paginable {
         self.manager = manager
     }
     
-    typealias paginableType = [Collection]
+    public typealias paginableType = [Collection]
     
     /// Get a single page from the list of all collections
     ///

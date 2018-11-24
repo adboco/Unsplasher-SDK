@@ -328,7 +328,7 @@ public extension Unsplash {
 
 // MARK: - Paginable protocol
 
-protocol Paginable {
+public protocol Paginable {
     
     associatedtype paginableType: Codable
     

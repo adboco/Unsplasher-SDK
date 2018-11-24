@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "UnsplasherSDK"
-  s.version      = "1.0.4"
+  s.version      = "1.0.5"
   s.summary      = "Unsplash API client written in Swift."
 
   # This description is used to generate tags and improve search results.
@@ -96,6 +96,8 @@ Pod::Spec.new do |s|
   #  you can include multiple dependencies to ensure it works.
 
   s.requires_arc = true
+
+  s.frameworks = "WebKit"
 
   s.dependency "Alamofire", "~> 4.6"
   s.dependency "SwiftKeychainWrapper", "~> 3.0.1"

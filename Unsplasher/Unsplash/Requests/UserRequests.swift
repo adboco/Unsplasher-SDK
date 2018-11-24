@@ -79,7 +79,7 @@ final public class UserRequests {
     
 }
 
-final public class UserPhotosRequests: Paginable {
+public class UserPhotosRequests: Paginable {
     
     private var manager: Unsplash
     
@@ -87,7 +87,7 @@ final public class UserPhotosRequests: Paginable {
         self.manager = manager
     }
     
-    typealias paginableType = [Photo]
+    public typealias paginableType = [Photo]
     
     /// Get a list of photos uploaded by an user.
     ///
@@ -151,7 +151,7 @@ final public class UserPhotosRequests: Paginable {
     
 }
 
-final public class UserCollectionsRequests: Paginable {
+public class UserCollectionsRequests: Paginable {
     
     private var manager: Unsplash
     
@@ -159,7 +159,7 @@ final public class UserCollectionsRequests: Paginable {
         self.manager = manager
     }
     
-    typealias paginableType = [Collection]
+    public typealias paginableType = [Collection]
     
     /// Get a list of collections created by a given user
     ///

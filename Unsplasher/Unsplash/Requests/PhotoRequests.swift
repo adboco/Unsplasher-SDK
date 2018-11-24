@@ -17,7 +17,7 @@ final public class PhotoRequests: Paginable {
         self.manager = manager
     }
     
-    typealias paginableType = [Photo]
+    public typealias paginableType = [Photo]
     
     /// Get list of photos
     ///

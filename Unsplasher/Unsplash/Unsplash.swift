@@ -273,6 +273,7 @@ public enum UnsplashError: Error {
     case authenticationError
     case cancelAuthenticationError
     case credentialsError
+    case userProfileNeeded
     
 }
 
@@ -304,6 +305,8 @@ extension UnsplashError: CustomStringConvertible {
             return "User has cancelled authentication process."
         case .credentialsError:
             return "Unable to make requests. You must configure credentials first."
+        case .userProfileNeeded:
+            return "Unable to get user related data before requesting his/her profile first."
         }
     }
     
@@ -349,6 +352,12 @@ extension Unsplash {
             }
             
         }
+    }
+    
+    /// Sign out current user
+    public func signOut() {
+        AccessToken.remove(from: keychain)
+        accessToken = nil
     }
     
 }
