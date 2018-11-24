@@ -42,4 +42,13 @@ public struct AccessToken: Codable {
         return AccessToken(token: token, tokenType: tokenType, scope: scope)
     }
     
+    static func remove(from keychain: KeychainWrapper?) {
+        guard let keychain = keychain else {
+            return
+        }
+        keychain.removeObject(forKey: "token")
+        keychain.removeObject(forKey: "token_type")
+        keychain.removeObject(forKey: "scope")
+    }
+    
 }

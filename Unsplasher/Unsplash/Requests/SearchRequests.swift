@@ -17,7 +17,7 @@ final public class SearchRequests: Paginable {
         self.manager = manager
     }
     
-    typealias paginableType = Search
+    public typealias paginableType = Search
     
     // MARK: - Users
     

@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import WebKit
 
 /// It manages authorization process through a custom view controller
 final class AuthorizationManager {
@@ -43,7 +44,7 @@ final class UnsplashAuthViewController: UIViewController {
     /// Completion handler
     var completionHandler: (AuthorizationResult) -> Void
     
-    let webView = UIWebView()
+    let webView = WKWebView()
     
     init(url: URL, callbackURLScheme: String, completion: @escaping (AuthorizationResult) -> Void) {
         self.authURL = url
@@ -69,7 +70,7 @@ final class UnsplashAuthViewController: UIViewController {
         
         webView.frame = self.view.frame
         webView.backgroundColor = UIColor.white
-        webView.delegate = self
+        webView.navigationDelegate = self
         
         self.view.addSubview(webView)
         
@@ -82,7 +83,7 @@ final class UnsplashAuthViewController: UIViewController {
         ])
         
         let urlRequest = URLRequest(url: authURL)
-        webView.loadRequest(urlRequest)
+        webView.load(urlRequest)
     }
     
     @objc func cancel(sender: UIBarButtonItem) {
@@ -93,27 +94,29 @@ final class UnsplashAuthViewController: UIViewController {
     
     @objc func refresh(sender: UIBarButtonItem) {
         let urlRequest = URLRequest(url: authURL)
-        webView.loadRequest(urlRequest)
+        webView.load(urlRequest)
     }
     
 }
 
-extension UnsplashAuthViewController: UIWebViewDelegate {
+extension UnsplashAuthViewController: WKNavigationDelegate {
     
-    func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebViewNavigationType) -> Bool {
-        guard let urlString = request.url?.absoluteString, urlString.starts(with: callbackURLScheme) else {
-            return true
+    func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
+        guard let urlString = navigationAction.request.url?.absoluteString, urlString.starts(with: callbackURLScheme) else {
+            decisionHandler(.allow)
+            return
         }
         guard let code = URLComponents(string: urlString)?.queryItems?.first(where: { $0.name == "code" })?.value else {
             self.dismiss(animated: true, completion: {
                 self.completionHandler(.failure(UnsplashError.authorizationError))
             })
-            return true
+            decisionHandler(.allow)
+            return
         }
         self.dismiss(animated: true, completion: {
             self.completionHandler(.success(code))
         })
-        return false
+        decisionHandler(.cancel)
     }
     
 }
