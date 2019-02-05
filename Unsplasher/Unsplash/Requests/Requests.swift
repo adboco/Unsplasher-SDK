@@ -139,12 +139,13 @@ extension Unsplash {
     ///   - needsAuth: Authorization needed
     ///   - expectedType: Result model
     ///   - completion: Completion handler
-    func request<T: Codable>(url: String, method: HTTPMethod = .get, parameters: Parameters = [:], includeHeaders: Bool = true, expectedType: T.Type, completion: @escaping (Result<T>) -> Void) {
+    func request<T: Codable>(url: String, method: HTTPMethod = .get, parameters: Parameters = [:], encoding: URLEncoding = .queryString, includeHeaders: Bool = true, expectedType: T.Type, completion: @escaping (Result<T>) -> Void) {
         guard self.applicationID != nil, self.secret != nil else {
             completion(.failure(UnsplashError.credentialsError))
             return
         }
-        Alamofire.request(url, method: method, parameters: parameters, encoding: URLEncoding.queryString, headers: includeHeaders ? headers(authenticationNeeded: isAuthenticated) : nil)
+        Alamofire.request(url, method: method, parameters: parameters, encoding: encoding,
+                          headers: includeHeaders ? headers(authenticationNeeded: isAuthenticated) : nil)
             .validate(statusCode: 200..<300)
             .responseJSON { (response) in
                 if let rateString = response.response?.allHeaderFields["x-ratelimit-limit"] as? String,

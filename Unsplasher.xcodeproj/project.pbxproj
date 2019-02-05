@@ -151,6 +151,7 @@
 		3DA03727203D691700E85963 /* DateFormatterExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatterExtension.swift; sourceTree = "<group>"; };
 		3DA03729203D703C00E85963 /* Searches.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Searches.swift; sourceTree = "<group>"; };
 		3DA0372B203D74CC00E85963 /* search_photos.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = search_photos.json; sourceTree = "<group>"; };
+		3DA2CC0B2209AE50005FB80B /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		3DAC4D69203D88A30026A71D /* search_collections.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = search_collections.json; sourceTree = "<group>"; };
 		3DE9E5C3203D8D2C00A9950E /* search_users.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = search_users.json; sourceTree = "<group>"; };
 		3DE9E5C5203D92FD00A9950E /* photo.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = photo.json; sourceTree = "<group>"; };
@@ -198,6 +199,7 @@
 		1041A9D8203AE19900956719 = {
 			isa = PBXGroup;
 			children = (
+				3DA2CC0B2209AE50005FB80B /* README.md */,
 				3D38BFA021A9334C00CC75A3 /* UnsplasherSDK.podspec */,
 				1041A9E4203AE19900956719 /* Unsplasher */,
 				1041A9EF203AE19900956719 /* UnsplasherTests */,

@@ -274,6 +274,7 @@ public enum UnsplashError: Error {
     case cancelAuthenticationError
     case credentialsError
     case userProfileNeeded
+    case jpegRepresentationError
     
 }
 
@@ -307,6 +308,8 @@ extension UnsplashError: CustomStringConvertible {
             return "Unable to make requests. You must configure credentials first."
         case .userProfileNeeded:
             return "Unable to get user related data before requesting his/her profile first."
+        case .jpegRepresentationError:
+            return "Unable to get jpeg representation of UIImage."
         }
     }
     
