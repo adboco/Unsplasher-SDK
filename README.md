@@ -47,6 +47,20 @@ Unsplash.shared.authenticate(self) { result in
 		print("Error: " + error.localizedDescription)
 	}
 }
+
+Unsplash.share.signOut() // Close session
+```
+
+To sign in with different user and avoid automatic authentication with the old one, you can remove cookies this way:
+```swift
+private func removeCookies() {
+    let dataStore = WKWebsiteDataStore.default()
+    dataStore.fetchDataRecords(ofTypes: WKWebsiteDataStore.allWebsiteDataTypes()) { records in
+        dataStore.removeData(ofTypes: WKWebsiteDataStore.allWebsiteDataTypes(), for: records.filter { $0.displayName.contains("unsplash") }, completionHandler: {
+            logger.debug("Cookies for Unsplash deleted successfully")
+        })    
+    }
+}
 ```
 
 > _Note:_ Make sure your Authorization callback URL is set to ``unsplash-{YOUR_APPLICATION_ID}://token``.
@@ -144,6 +158,12 @@ photosClient.photo(id: photo.id, width: 1200, height: 800) { result in /* handle
 photo.location.country = "Spain"
 photo.location.city = "Valencia"
 photosClient.update(photo) { result in /* handle the result */ }
+
+// Upload photo
+let photo = UIImage(...)
+let location = Location(...)
+let exif = Exif(...)
+photosClient.upload(photo, location: location, exif: exif) { result in /* handle the result */ }
 
 // Like and unlike a photo
 photosClient.like(id: photo.id) { result in /* handle the result */ }
