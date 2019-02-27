@@ -4,9 +4,9 @@ xcode_workspace: Unsplasher.xcworkspace
 xcode_scheme: Unsplasher
 xcode_destination: platform=iOS Simulator,OS=12.1,name=iPhone XS
 before_install:
-- sed -i 's/YOUR_APPLICATION_ID/'"$APP_ID"'/g' UnsplasherTests/UnsplasherTests.swift
-- sed -i 's/YOUR_SECRET/'"$SECRET"'/g' UnsplasherTests/UnsplasherTests.swift
-- sed -i 's/YOUR_ACCESS_TOKEN/'"$ACCESS_TOKEN"'/g' UnsplasherTests/UnsplasherTests.swift
+- sed -i "" 's/YOUR_APPLICATION_ID/'"$APP_ID"'/g' UnsplasherTests/UnsplasherTests.swift
+- sed -i "" 's/YOUR_SECRET/'"$SECRET"'/g' UnsplasherTests/UnsplasherTests.swift
+- sed -i "" 's/YOUR_ACCESS_TOKEN/'"$ACCESS_TOKEN"'/g' UnsplasherTests/UnsplasherTests.swift
 - cd Example
 - pod install
 env:
