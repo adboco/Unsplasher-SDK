@@ -50,7 +50,7 @@ class UnsplasherTests: XCTestCase {
         Unsplash.shared.currentUser.profile { result in
             switch result {
             case .success(var user):
-                user.firstName = "Name"
+                user.firstName = "Adrián"
                 Unsplash.shared.currentUser.update(user, completion: { (result) in
                     XCTAssertTrue(result.isSuccess, "Error updating profile.")
                     expectation.fulfill()
