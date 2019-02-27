@@ -1,0 +1,8 @@
+language: swift
+osx_image: xcode10.1
+xcode_workspace: Unsplasher.xcworkspace
+xcode_scheme: Example
+xcode_destination: platform=iOS Simulator,OS=12.1,name=iPhone XS
+before_install:
+- cd Example
+- pod install
