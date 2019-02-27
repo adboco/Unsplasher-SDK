@@ -1,6 +1,6 @@
 # UNSPLASHER SDK
 
-![build](https://img.shields.io/badge/build-passing-green.svg)
+[![build](https://travis-ci.org/adboco/Unsplasher-SDK.svg?branch=master)](https://travis-ci.org/adboco/Unsplasher-SDK)
 ![platform](https://img.shields.io/badge/platform-iOS%209.0%2B-lightgrey.svg)
 ![platform](https://img.shields.io/badge/xcode-9.0%2B-lightgrey.svg)
 ![swift version](https://img.shields.io/badge/swift-4.2-orange.svg)
