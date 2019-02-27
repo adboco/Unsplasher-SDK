@@ -179,19 +179,6 @@ class UnsplasherTests: XCTestCase {
         wait(for: [expectation], timeout: defaultTimeout)
     }
     
-    func testUploadPhoto() {
-        let expectation = self.expectation(description: "Photo Upload")
-        
-        let photo = UIImage("downloads")
-        
-        Unsplash.shared.photos.upload(photo) { result in
-            XCTAssertTrue(result.isSuccess, "Error uploading photo")
-            expectation.fulfill()
-        }
-        
-        wait(for: [expectation], timeout: defaultTimeout)
-    }
-    
     // MARK: - Statistics
     
     func testGetPhotoStatistics() {
