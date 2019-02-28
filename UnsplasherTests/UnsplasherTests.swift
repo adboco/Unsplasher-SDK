@@ -22,7 +22,10 @@ class UnsplasherTests: XCTestCase {
         
         let scopes = Unsplash.PermissionScope.allCases.filter({ $0 != .basic })
         Unsplash.configure(appId: appId, secret: secret, scopes: scopes)
-        let accessToken = AccessToken(token: token, tokenType: "bearer", scope: Unsplash.shared.scopes.map({ $0.rawValue }).joined(separator: " "))
+        let accessToken = AccessToken(
+            token: token,
+            tokenType: "bearer",
+            scope: Unsplash.shared.scopes.map({ $0.rawValue }).joined(separator: " "))
         Unsplash.shared.accessToken = accessToken
     }
     
@@ -47,7 +50,9 @@ class UnsplasherTests: XCTestCase {
     }
     
     func testAuthController() {
-        let authController = UnsplashAuthViewController(url: URL(string: "https://unsplash.com")!, callbackURLScheme: "token://unsplash") { result in
+        let authController = UnsplashAuthViewController(
+        url: URL(string: "https://unsplash.com")!,
+        callbackURLScheme: "token://unsplash") { result in
             return
         }
         
