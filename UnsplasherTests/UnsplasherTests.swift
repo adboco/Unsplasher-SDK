@@ -186,9 +186,6 @@ class UnsplasherTests: XCTestCase {
                 XCTFail("Could not retrieve photo with id: \(id)")
                 return
             }
-            photo.location?.confidential = false
-            photo.location?.position?.latitude = 8.221312
-            photo.location?.position?.longitude = 41.012432
             photo.location?.country = "Spain"
             photo.location?.city = "A Coruña"
             photo.exif?.make = "Nikon"
