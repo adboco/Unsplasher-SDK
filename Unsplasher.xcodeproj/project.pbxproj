@@ -6,20 +6,6 @@
 	objectVersion = 48;
 	objects = {
 
-/* Begin PBXAggregateTarget section */
-		1041AA01203AF77400956719 /* UniversalUnsplasher */ = {
-			isa = PBXAggregateTarget;
-			buildConfigurationList = 1041AA02203AF77400956719 /* Build configuration list for PBXAggregateTarget "UniversalUnsplasher" */;
-			buildPhases = (
-				1041AA05203AF77B00956719 /* ShellScript */,
-			);
-			dependencies = (
-			);
-			name = UniversalUnsplasher;
-			productName = UniversalUnsplasher;
-		};
-/* End PBXAggregateTarget section */
-
 /* Begin PBXBuildFile section */
 		1041A9EC203AE19900956719 /* Unsplasher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1041A9E2203AE19900956719 /* Unsplasher.framework */; };
 		1041A9F1203AE19900956719 /* UnsplasherTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1041A9F0203AE19900956719 /* UnsplasherTests.swift */; };
@@ -470,10 +456,6 @@
 						ProvisioningStyle = Automatic;
 						TestTargetID = 10564645203C29E000D7D49E;
 					};
-					1041AA01203AF77400956719 = {
-						CreatedOnToolsVersion = 9.2;
-						ProvisioningStyle = Automatic;
-					};
 					10564645203C29E000D7D49E = {
 						CreatedOnToolsVersion = 9.2;
 						ProvisioningStyle = Automatic;
@@ -495,7 +477,6 @@
 			targets = (
 				1041A9E1203AE19900956719 /* Unsplasher */,
 				1041A9EA203AE19900956719 /* UnsplasherTests */,
-				1041AA01203AF77400956719 /* UniversalUnsplasher */,
 				10564645203C29E000D7D49E /* Example */,
 			);
 		};
@@ -569,20 +550,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Example/Pods-Example-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		1041AA05203AF77B00956719 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "#!/bin/sh\nUNIVERSAL_OUTPUTFOLDER=${BUILD_DIR}/${CONFIGURATION}-universal\n# make sure the output directory exists\nmkdir -p \"${UNIVERSAL_OUTPUTFOLDER}\"\n# Step 1. Build Device and Simulator versions\nxcodebuild -target \"AlamoWater\" ONLY_ACTIVE_ARCH=NO -configuration ${CONFIGURATION} -sdk iphoneos  BUILD_DIR=\"${BUILD_DIR}\" BUILD_ROOT=\"${BUILD_ROOT}\" clean build\nxcodebuild -target \"AlamoWater\" -configuration ${CONFIGURATION} -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO BUILD_DIR=\"${BUILD_DIR}\" BUILD_ROOT=\"${BUILD_ROOT}\" clean build\n# Step 2. Copy the framework structure (from iphoneos build) to the universal folder\ncp -R \"${BUILD_DIR}/${CONFIGURATION}-iphoneos/AlamoWater.framework\" \"${UNIVERSAL_OUTPUTFOLDER}/\"\n# Step 3. Copy Swift modules from iphonesimulator build (if it exists) to the copied framework directory\nSIMULATOR_SWIFT_MODULES_DIR=\"${BUILD_DIR}/${CONFIGURATION}-iphonesimulator/AlamoWater.framework/Modules/AlamoWater.swiftmodule/.\"\nif [ -d \"${SIMULATOR_SWIFT_MODULES_DIR}\" ]; then\ncp -R \"${SIMULATOR_SWIFT_MODULES_DIR}\" \"${UNIVERSAL_OUTPUTFOLDER}/AlamoWater.framework/Modules/AlamoWater.swiftmodule\"\nfi\n# Step 4. Create universal binary file using lipo and place the combined executable in the copied framework directory\nlipo -create -output \"${UNIVERSAL_OUTPUTFOLDER}/AlamoWater.framework/AlamoWater\" \"${BUILD_DIR}/${CONFIGURATION}-iphonesimulator/AlamoWater.framework/AlamoWater\" \"${BUILD_DIR}/${CONFIGURATION}-iphoneos/AlamoWater.framework/AlamoWater\"\n# Step 5. Convenience step to copy the framework to the project's directory\ncp -R \"${UNIVERSAL_OUTPUTFOLDER}/AlamoWater.framework\" \"${PROJECT_DIR}\"\n# Step 6. Convenience step to open the project's directory in Finder\nopen \"${PROJECT_DIR}\"";
 			showEnvVarsInLog = 0;
 		};
 		72BFF6C1712929F360A6736E /* [CP] Check Pods Manifest.lock */ = {
@@ -943,22 +910,6 @@
 			};
 			name = Release;
 		};
-		1041AA03203AF77400956719 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Debug;
-		};
-		1041AA04203AF77400956719 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Release;
-		};
 		10564655203C29E100D7D49E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 01EFA8047633168E2A0E62E7 /* Pods-Example.debug.xcconfig */;
@@ -1021,15 +972,6 @@
 			buildConfigurations = (
 				1041A9FA203AE19900956719 /* Debug */,
 				1041A9FB203AE19900956719 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		1041AA02203AF77400956719 /* Build configuration list for PBXAggregateTarget "UniversalUnsplasher" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				1041AA03203AF77400956719 /* Debug */,
-				1041AA04203AF77400956719 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

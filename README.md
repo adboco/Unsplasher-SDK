@@ -32,7 +32,7 @@ import UnsplasherSDK
 First thing you need is to configure the Unsplash instance with your credentials and scopes. Do it, for example, in your AppDelegate:
 ```swift
 // Setup application ID and Secret
-Unsplash.configure(appId: "{YOUR_APPLICATION_ID}", secret: "{YOUR_SECRET}", scopes: Unsplash.PermissionScope.all) // All scopes
+Unsplash.configure(appId: "{YOUR_APPLICATION_ID}", secret: "{YOUR_SECRET}", scopes: Unsplash.PermissionScope.allCases) // All scopes
 // or
 Unsplash.configure(appId: "{YOUR_APPLICATION_ID}", secret: "{YOUR_SECRET}", scopes: [.readUser, .writeLikes, ...]) // Specific scopes
 ```
