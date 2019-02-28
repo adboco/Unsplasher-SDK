@@ -176,6 +176,28 @@ class UnsplasherTests: XCTestCase {
         wait(for: [expectation], timeout: defaultTimeout)
     }
     
+    func testUpdatePhoto() {
+        let expectation = self.expectation(description: "Photo Update")
+        
+        let id = "Hc8z9TzyVt0"
+        
+        Unsplash.shared.photos.photo(id: id) { result in
+            guard result.isSuccess, var photo = result.value else {
+                XCTFail("Could not retrieve photo with id: \(id)")
+                return
+            }
+            photo.location?.country = "Spain"
+            photo.location?.city = "A Coruña"
+            photo.exif?.make = "Nikon"
+            Unsplash.shared.photos.update(photo, completion: { result in
+                XCTAssertTrue(result.isSuccess, "Error updating photo with id: \(id)")
+                expectation.fulfill()
+            })
+        }
+        
+        wait(for: [expectation], timeout: defaultTimeout)
+    }
+    
     func testGetRandomPhotos() {
         let expectation = self.expectation(description: "Random Photos")
         
@@ -369,6 +391,34 @@ class UnsplasherTests: XCTestCase {
                 break
             }
             XCTAssertTrue(result.isSuccess, "Error creating collection.")
+            expectation.fulfill()
+        }
+        
+        wait(for: [expectation], timeout: defaultTimeout)
+    }
+    
+    func testAddPhotoToCollection() {
+        let expectation = self.expectation(description: "Add Photo to Collection")
+        
+        let photoId = "dtCTfjTEOgg"
+        let id: UInt32 = 4378364
+        
+        Unsplash.shared.collections.add(photoId: photoId, to: id) { result in
+            XCTAssertTrue(result.isSuccess, "Error adding photo (\(photoId)) to collection with id: \(id).")
+            expectation.fulfill()
+        }
+        
+        wait(for: [expectation], timeout: defaultTimeout)
+    }
+    
+    func testRemovePhotoFromCollection() {
+        let expectation = self.expectation(description: "Add Photo to Collection")
+        
+        let photoId = "dtCTfjTEOgg"
+        let id: UInt32 = 4378364
+        
+        Unsplash.shared.collections.remove(photoId: photoId, from: id) { result in
+            XCTAssertTrue(result.isSuccess, "Error removing photo (\(photoId)) from collection with id: \(id).")
             expectation.fulfill()
         }
         
