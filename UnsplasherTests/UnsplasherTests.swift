@@ -50,7 +50,7 @@ class UnsplasherTests: XCTestCase {
         Unsplash.shared.currentUser.profile { result in
             switch result {
             case .success(var user):
-                user.firstName = "Name"
+                user.firstName = "Adrián"
                 Unsplash.shared.currentUser.update(user, completion: { (result) in
                     XCTAssertTrue(result.isSuccess, "Error updating profile.")
                     expectation.fulfill()
@@ -325,7 +325,7 @@ class UnsplasherTests: XCTestCase {
     func testCreateDeleteCollection() {
         let expectation = self.expectation(description: "Create and Delete Collection")
         
-        Unsplash.shared.collections.create(title: "My Collection", isPrivate: true) { result in
+        Unsplash.shared.collections.create(title: "Collection", isPrivate: false) { result in
             switch result {
             case .success(let collection):
                 Unsplash.shared.collections.delete(id: collection.id, completion: { result in
