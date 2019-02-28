@@ -20,13 +20,43 @@ class UnsplasherTests: XCTestCase {
     override func setUp() {
         super.setUp()
         
-        Unsplash.configure(appId: appId, secret: secret, scopes: Unsplash.PermissionScope.all)
-        let accessToken = AccessToken(token: token, tokenType: "bearer", scope: Unsplash.PermissionScope.all.map({ $0.rawValue }).joined(separator: " "))
+        let scopes = Unsplash.PermissionScope.allCases.filter({ $0 != .basic })
+        Unsplash.configure(appId: appId, secret: secret, scopes: scopes)
+        let accessToken = AccessToken(token: token, tokenType: "bearer", scope: Unsplash.shared.scopes.map({ $0.rawValue }).joined(separator: " "))
         Unsplash.shared.accessToken = accessToken
     }
     
     override func tearDown() {
         super.tearDown()
+    }
+    
+    // MARK: - Authenticate
+    
+    func testAuthenticate() {
+        let expectation = self.expectation(description: "Authenticate")
+        
+        let viewController = UIViewController()
+        _ = viewController.view
+        Unsplash.shared.authenticate(viewController) { result in
+            XCTAssertTrue(result.isSuccess, "Error authenticating.")
+            Unsplash.shared.signOut()
+            expectation.fulfill()
+        }
+        
+        wait(for: [expectation], timeout: defaultTimeout)
+    }
+    
+    func testAuthController() {
+        let expectation = self.expectation(description: "Authenticate")
+        
+        let authController = UnsplashAuthViewController(url: URL(string: "https://unsplash.com")!, callbackURLScheme: "token://unsplash") { result in
+            XCTAssertTrue(result.isFailure, "Auth controller could not be canceled.")
+            expectation.fulfill()
+        }
+        
+        authController.refresh(sender: UIBarButtonItem())
+        authController.cancel(sender: UIBarButtonItem())
+        XCTAssertNotNil(authController.view, "Error loading auth controller.")
     }
     
     // MARK: - Requests

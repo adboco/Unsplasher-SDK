@@ -39,4 +39,8 @@ class UtilTests: XCTestCase {
         XCTAssertTrue(links.count == 4 && links.count == keys.count, "Incorrect number of links")
     }
     
+    func testInvalidRegExp() {
+        XCTAssertTrue("test".matches(in: "/^[^:]*:/").isEmpty, "Regex not invalid.")
+    }
+    
 }

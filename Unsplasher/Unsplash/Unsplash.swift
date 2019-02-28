@@ -161,7 +161,7 @@ public extension Unsplash {
     /// - writeFollowers: Follow or unfollow a user on the user’s behalf
     /// - readCollections: View a user’s private collections
     /// - writeCollections: Create and update a user’s collections
-    public enum PermissionScope: String {
+    public enum PermissionScope: String, CaseIterable {
         
         case basic = "public"
         case readUser = "read_user"
@@ -173,19 +173,6 @@ public extension Unsplash {
         case readCollections = "read_collections"
         case writeCollections = "write_collections"
         
-        public static var all: [PermissionScope] {
-            var scopes: [PermissionScope] = []
-            scopes.append(.basic)
-            scopes.append(.readUser)
-            scopes.append(.writeUser)
-            scopes.append(.readPhotos)
-            scopes.append(.writePhotos)
-            scopes.append(.writeLikes)
-            scopes.append(.writeFollowers)
-            scopes.append(.readCollections)
-            scopes.append(.writeCollections)
-            return scopes
-        }
     }
     
     /// Order by filter
@@ -227,18 +214,8 @@ public extension Unsplash {
     /// - featured: Featured collections
     /// - curated: Curated collections
     /// - any: All types
-    public enum CollectionListType: String {
+    public enum CollectionListType: String, CaseIterable {
         case any, featured, curated
-        
-        static var allValues: [CollectionListType] {
-            var all: [CollectionListType] = []
-            switch CollectionListType.any {
-            case .any: all.append(.any); fallthrough
-            case .featured: all.append(.featured); fallthrough
-            case .curated: all.append(.curated)
-            }
-            return all
-        }
     }
     
 }
