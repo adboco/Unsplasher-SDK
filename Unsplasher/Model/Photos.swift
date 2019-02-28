@@ -14,7 +14,7 @@ public struct Photo: Codable {
     public let width: UInt32?
     public let height: UInt32?
     public let description: String?
-    public let hexColor: String?
+    public var hexColor: String?
     public let user: User?
     public let urls: PhotoURL?
     public let links: Links?
@@ -97,7 +97,7 @@ public struct Location: Codable {
     
     public var city: String?
     public var country: String?
-    public var positon: Position?
+    public var position: Position?
     public var name: String?
     public var confidential: Bool?
     
