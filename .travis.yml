@@ -8,10 +8,6 @@ before_install:
 - sed -i "" 's/YOUR_SECRET/'"$SECRET"'/g' UnsplasherTests/UnsplasherTests.swift
 - sed -i "" 's/YOUR_ACCESS_TOKEN/'"$ACCESS_TOKEN"'/g' UnsplasherTests/UnsplasherTests.swift
 - pod install
-after_success:
-- if [[ "$TRAVIS_COMMIT_MESSAGE" = *"[patch]"* ]]; then bundle exec fastlane patch; fi
-- if [[ "$TRAVIS_COMMIT_MESSAGE" = *"[minor]"* ]]; then bundle exec fastlane minor; fi
-- if [[ "$TRAVIS_COMMIT_MESSAGE" = *"[major]"* ]]; then bundle exec fastlane major; fi
 env:
   global:
   - secure: bpxGBUhu2zwFcNctMI7bHVAtA8Vsbv8cZgbgqXEEjC3PcCCAsWm1qlsPIDj3fvCGsx/tgjKvHhDqr3bRLlN5/il4ZPoS7ce3HqyhRRibBDH4N5/GQe5WFhlxeipQEp3Ti2sdgVuqp93NUy4DrxliYMeyjXTintFmNhkrUFbjA8CGvoNv7EONCneoDGiFCHorHELv6s6moKAfgJIWdJhnLekZnnw5dk1bZ7NWlr72t4GpIWbss59s5YckXYPabE9BwCU5obyazGtlpuwIdfL9iT5prWryvyAE7fkfuVTMSsAWt66hw6FJ+WYvI3a6+QDKGvMDul3KNeOPxtZwdbqemrJpZ90KTysh9/FJpydzfe6LplZAVDnxTzEZj7ffhEFRWq4VCJc7QQDZ6+/he/bvCZ/VxCfcRZi089SIdTHKjHacMs2vFC+EVHCl/VKwwdFdlH1NLHXGSM1/uW2DUC3Zv1A2n/s5s1q+LhIBP6Rj5+9M08ny48m87dKBE59mLeHWTvcJFJeNUCE9ECvXT7BB59iZnV7uMZXdGTgq4gnLWEOIFpqF+g+MnI1Fa9MnS7XTJhDwXmgFcxJBPR9USClJyDcTv3oh9rdAlbLX2y7kcbEtZpu5ls3YhIAmhalkOfjv++RzIaBZcJX11sX/i1SQzcXH9CRTXSHG25pYVXvfrm4=
