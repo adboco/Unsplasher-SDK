@@ -86,6 +86,13 @@
 			remoteGlobalIDString = 1041A9E1203AE19900956719;
 			remoteInfo = Unsplasher;
 		};
+		3D3378E12227F8E7001095B6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1041A9D9203AE19900956719 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 10564645203C29E000D7D49E;
+			remoteInfo = Example;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -414,6 +421,7 @@
 			);
 			dependencies = (
 				1041A9EE203AE19900956719 /* PBXTargetDependency */,
+				3D3378E22227F8E7001095B6 /* PBXTargetDependency */,
 			);
 			name = UnsplasherTests;
 			productName = UnsplasherTests;
@@ -460,6 +468,7 @@
 						CreatedOnToolsVersion = 9.2;
 						LastSwiftMigration = 1010;
 						ProvisioningStyle = Automatic;
+						TestTargetID = 10564645203C29E000D7D49E;
 					};
 					1041AA01203AF77400956719 = {
 						CreatedOnToolsVersion = 9.2;
@@ -715,6 +724,11 @@
 			target = 1041A9E1203AE19900956719 /* Unsplasher */;
 			targetProxy = 10564660203C2C2B00D7D49E /* PBXContainerItemProxy */;
 		};
+		3D3378E22227F8E7001095B6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 10564645203C29E000D7D49E /* Example */;
+			targetProxy = 3D3378E12227F8E7001095B6 /* PBXContainerItemProxy */;
+		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
@@ -909,6 +923,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Example.app/Example";
 			};
 			name = Debug;
 		};
@@ -924,6 +939,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Example.app/Example";
 			};
 			name = Release;
 		};

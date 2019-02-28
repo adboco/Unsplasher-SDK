@@ -9,7 +9,7 @@
 import Foundation
 import SwiftKeychainWrapper
 
-public struct AccessToken: Codable {
+public struct AccessToken: Codable, Equatable {
     
     public let token: String
     public let tokenType: String

@@ -20,7 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
         // Setup application ID and Secret
-        Unsplash.configure(appId: appId, secret: secret, scopes: Unsplash.PermissionScope.all)
+        Unsplash.configure(appId: appId, secret: secret, scopes: Unsplash.PermissionScope.allCases)
         
         return true
     }
