@@ -1,6 +1,8 @@
 # UNSPLASHER SDK
 
 [![build](https://travis-ci.org/adboco/Unsplasher-SDK.svg?branch=master)](https://travis-ci.org/adboco/Unsplasher-SDK)
+[![codecov](https://codecov.io/gh/adboco/Unsplasher-SDK/branch/master/graph/badge.svg)](https://codecov.io/gh/adboco/Unsplasher-SDK)
+[![maintainability](https://api.codeclimate.com/v1/badges/fdeb03a2a9519f7b4063/maintainability)](https://codeclimate.com/github/adboco/Unsplasher-SDK/maintainability)
 ![platform](https://img.shields.io/badge/platform-iOS%209.0%2B-lightgrey.svg)
 ![platform](https://img.shields.io/badge/xcode-9.0%2B-lightgrey.svg)
 ![swift version](https://img.shields.io/badge/swift-4.2-orange.svg)
