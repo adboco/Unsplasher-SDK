@@ -31,6 +31,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var vegaScrollFlowLayout: VegaScrollFlowLayout!
     let profileImageView = UIImageView()
+    let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
     
     let reuseIdentifier = "CustomCell"
     
@@ -42,34 +43,12 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        navigationController?.navigationBar.shadowImage = UIImage()
-        
-        vegaScrollFlowLayout.minimumLineSpacing = 10
-        vegaScrollFlowLayout.itemSize = CGSize(width: collectionView.frame.width - 20, height: itemHeight)
-        vegaScrollFlowLayout.sectionInset = UIEdgeInsets(top: 10, left: 0, bottom: 10, right: 0)
-        collectionView.contentInset.bottom = itemHeight
-        
-        // double tap to like image
-        let doubleTap = UITapGestureRecognizer(target: self, action: #selector(doubleTapped(_:)))
-        doubleTap.numberOfTapsRequired = 2
-        doubleTap.delaysTouchesBegan = true
-        collectionView.addGestureRecognizer(doubleTap)
-        
-        // show activity indicator while the app downloads data
-        let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
-        activityIndicator.color = UIColor.darkGray
-        self.collectionView.backgroundView = activityIndicator
-        activityIndicator.snp.makeConstraints { (make) in
-            make.centerX.equalToSuperview()
-            make.centerY.equalToSuperview().offset(-activityIndicator.frame.size.height)
-        }
-        activityIndicator.startAnimating()
+        setupView()
         
         // get photos closure
         let getPhotos: () -> Void = {
             Unsplash.shared.photos.photos(orderBy: .latest, curated: false) { result in
-                activityIndicator.stopAnimating()
+                self.activityIndicator.stopAnimating()
                 switch result {
                 case .success(let photos):
                     self.photos = photos
@@ -111,7 +90,7 @@ class ViewController: UIViewController {
                     getUser()
                     getPhotos()
                 case .failure(let error):
-                    activityIndicator.stopAnimating()
+                    self.activityIndicator.stopAnimating()
                     print("Error: " + error.localizedDescription)
                 }
             }
@@ -130,6 +109,30 @@ class ViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         self.hideProfileButton(true)
+    }
+    
+    func setupView() {
+        navigationController?.navigationBar.shadowImage = UIImage()
+        
+        vegaScrollFlowLayout.minimumLineSpacing = 10
+        vegaScrollFlowLayout.itemSize = CGSize(width: collectionView.frame.width - 20, height: itemHeight)
+        vegaScrollFlowLayout.sectionInset = UIEdgeInsets(top: 10, left: 0, bottom: 10, right: 0)
+        collectionView.contentInset.bottom = itemHeight
+        
+        // double tap to like image
+        let doubleTap = UITapGestureRecognizer(target: self, action: #selector(doubleTapped(_:)))
+        doubleTap.numberOfTapsRequired = 2
+        doubleTap.delaysTouchesBegan = true
+        collectionView.addGestureRecognizer(doubleTap)
+        
+        // show activity indicator while the app downloads data
+        activityIndicator.color = UIColor.darkGray
+        self.collectionView.backgroundView = activityIndicator
+        activityIndicator.snp.makeConstraints { (make) in
+            make.centerX.equalToSuperview()
+            make.centerY.equalToSuperview().offset(-activityIndicator.frame.size.height)
+        }
+        activityIndicator.startAnimating()
     }
     
     func displayProfileButton(for user: User) {
