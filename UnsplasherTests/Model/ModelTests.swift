@@ -18,6 +18,11 @@ class ModelTests: XCTestCase {
         return jsonDecoder
     }()
     
+    private let enconder: JSONEncoder = {
+        let jsonEncoder = JSONEncoder()
+        return jsonEncoder
+    }()
+    
     override func setUp() {
         super.setUp()
     }
@@ -43,7 +48,9 @@ class ModelTests: XCTestCase {
     // MARK: - Photos
     
     func testDecodePhoto() {
-        let photo = self.decode(modelType: Photo.self, from: "photo")
+        var photo = self.decode(modelType: Photo.self, from: "photo")
+        _ = photo?.color
+        photo?.hexColor = nil
         _ = photo?.color
         XCTAssertNotNil(photo, "Could not decode photo.")
     }
@@ -75,6 +82,14 @@ class ModelTests: XCTestCase {
         }
     }
     
+    func testEncodeSearch() {
+        for resource in ["search_photos", "search_collections", "search_users"] {
+            let search = self.decode(modelType: Search.self, from: resource)
+            let jsonData = try? JSONEncoder().encode(search)
+            XCTAssertNotNil(jsonData, "Could not encode search: \(resource)")
+        }
+    }
+    
     // MARK: - Collections
     
     func testDecodeCollection() {
@@ -98,6 +113,15 @@ class ModelTests: XCTestCase {
         
         AccessToken.remove(from: keychain)
         XCTAssertNil(AccessToken.load(from: keychain), "Access token could not be removed.")
+    }
+    
+    // MARK: - Errors
+    
+    func testUnsplashErrors() {
+        UnsplashError.allCases.forEach { error in
+            XCTAssertNotNil(error.localizedDescription, "Error without description")
+            XCTAssertNotNil(error.errorDescription, "Error without description")
+        }
     }
     
 }

@@ -51,9 +51,9 @@ class UnsplasherTests: XCTestCase {
     
     func testAuthController() {
         let authController = UnsplashAuthViewController(
-        url: URL(string: "https://unsplash.com")!,
-        callbackURLScheme: "token://unsplash") { result in
-            return
+            url: URL(string: "https://unsplash.com")!,
+            callbackURLScheme: "token://unsplash") { result in
+                return
         }
         
         authController.refresh(sender: UIBarButtonItem())
@@ -155,7 +155,7 @@ class UnsplasherTests: XCTestCase {
     func testGetPhotoList() {
         let expectation = self.expectation(description: "Photos")
         
-        Unsplash.shared.photos.photos { result in
+        Unsplash.shared.photos.photos(page: 1, perPage: 10) { result in
             XCTAssertTrue(result.isSuccess, "Error getting photos.")
             expectation.fulfill()
         }
@@ -168,7 +168,7 @@ class UnsplasherTests: XCTestCase {
         
         let id = "2PODhmrvLik"
         
-        Unsplash.shared.photos.photo(id: id) { result in
+        Unsplash.shared.photos.photo(id: id, width: 300, height: 300) { result in
             XCTAssertTrue(result.isSuccess, "Error getting photo with id: \(id)")
             expectation.fulfill()
         }
@@ -189,6 +189,7 @@ class UnsplasherTests: XCTestCase {
             photo.location?.country = "Spain"
             photo.location?.city = "A Coruña"
             photo.exif?.make = "Nikon"
+            photo.exif?.model = "D520"
             Unsplash.shared.photos.update(photo, completion: { result in
                 XCTAssertTrue(result.isSuccess, "Error updating photo with id: \(id)")
                 expectation.fulfill()
@@ -201,9 +202,15 @@ class UnsplasherTests: XCTestCase {
     func testGetRandomPhotos() {
         let expectation = self.expectation(description: "Random Photos")
         
-        Unsplash.shared.photos.randomPhotos { result in
-            XCTAssertTrue(result.isSuccess, "Error getting random photos.")
-            expectation.fulfill()
+        Unsplash.shared.photos.randomPhotos(
+            collectionIds: [232, 547, 89, 555],
+            featured: false,
+            width: 600,
+            height: 400,
+            orientation: .landscape,
+            count: 4) { result in
+                XCTAssertTrue(result.isSuccess, "Error getting random photos.")
+                expectation.fulfill()
         }
         
         wait(for: [expectation], timeout: defaultTimeout)
@@ -212,7 +219,12 @@ class UnsplasherTests: XCTestCase {
     func testGetRandomPhoto() {
         let expectation = self.expectation(description: "Random Photo")
         
-        Unsplash.shared.photos.randomPhoto { result in
+        Unsplash.shared.photos.randomPhoto(
+            collectionIds: [232, 547, 89, 555],
+            featured: false,
+            width: 600,
+            height: 400,
+            orientation: .landscape) { result in
             XCTAssertTrue(result.isSuccess, "Error getting random photo.")
             expectation.fulfill()
         }
@@ -240,7 +252,7 @@ class UnsplasherTests: XCTestCase {
         
         let photoId = "2PODhmrvLik"
         
-        Unsplash.shared.photos.statistics(photoId: photoId) { result in
+        Unsplash.shared.photos.statistics(photoId: photoId, resolution: .days) { result in
             XCTAssertTrue(result.isSuccess, "Error getting photo statistics.")
             expectation.fulfill()
         }

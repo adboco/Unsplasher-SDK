@@ -236,7 +236,7 @@ public extension Unsplash {
 /// - authenticationError: Authentication error
 /// - cancelAuthenticationError: User cancels authentication process
 /// - credentialsError: Credentials not specified
-public enum UnsplashError: Error {
+public enum UnsplashError: Error, CaseIterable {
     
     case unknownError
     case decodeError
@@ -252,6 +252,25 @@ public enum UnsplashError: Error {
     case credentialsError
     case userProfileNeeded
     case jpegRepresentationError
+    
+    public static var allCases: [UnsplashError] {
+        return [
+            .unknownError,
+            .decodeError,
+            .requestError("Error"),
+            .rateLimitError(50),
+            .scopeRequiredError(Unsplash.PermissionScope.writeLikes),
+            .wrongCountError,
+            .wrongQuantityError,
+            .noPaginationError("No more pages"),
+            .authorizationError,
+            .authenticationError,
+            .cancelAuthenticationError,
+            .credentialsError,
+            .userProfileNeeded,
+            .jpegRepresentationError
+        ]
+    }
     
 }
 

@@ -68,73 +68,6 @@ final public class PhotoRequests: Paginable {
         self.manager.request(url: url, parameters: parameters, expectedType: Photo.self, completion: completion)
     }
     
-    /// Upload a new photo
-    ///
-    /// - Parameters:
-    ///   - photo: UIImage to upload
-    ///   - location: Location info
-    ///   - exif: Exif info
-    ///   - completion: Completion handler
-    public func upload(_ photo: UIImage, location: Location? = nil, exif: Exif? = nil, completion: @escaping (PhotoResult) -> Void) {
-        let requiredScope: Unsplash.PermissionScope = .writePhotos
-        guard self.manager.scopes.contains(requiredScope) else {
-            completion(.failure(UnsplashError.scopeRequiredError(requiredScope)))
-            return
-        }
-        var parameters: Parameters = [:]
-        guard let data = photo.jpegData(compressionQuality: 1.0) else {
-            completion(.failure(UnsplashError.jpegRepresentationError))
-            return
-        }
-        parameters["photo"] = data.base64EncodedString(options: .lineLength64Characters)
-        if let location = location {
-            var locationParameters: [String: Any] = [:]
-            if let latitude = location.positon?.latitude {
-                locationParameters["latitude"] = latitude
-            }
-            if let longitude = location.positon?.longitude {
-                locationParameters["longitude"] = longitude
-            }
-            if let name = location.name {
-                locationParameters["name"] = name
-            }
-            if let city = location.city {
-                locationParameters["city"] = city
-            }
-            if let country = location.country {
-                locationParameters["country"] = country
-            }
-            if let confidential = location.confidential {
-                locationParameters["confidential"] = confidential
-            }
-            parameters["location"] = locationParameters
-        }
-        if let exif = exif {
-            var exifParameters: [String: Any] = [:]
-            if let make = exif.make {
-                exifParameters["make"] = make
-            }
-            if let model = exif.model {
-                exifParameters["model"] = model
-            }
-            if let exposureTime = exif.exposureTime {
-                exifParameters["exposure_time"] = exposureTime
-            }
-            if let aperture = exif.aperture {
-                exifParameters["aperture_value"] = aperture
-            }
-            if let focal = exif.focalLength {
-                exifParameters["focal_length"] = focal
-            }
-            if let iso = exif.iso {
-                exifParameters["iso_speed_ratings"] = iso
-            }
-            parameters["exif"] = exifParameters
-        }
-        let url = Unsplash.photosURLString
-        self.manager.request(url: url, method: .post, parameters: parameters, encoding: .httpBody, expectedType: Photo.self, completion: completion)
-    }
-    
     /// Update photo info
     ///
     /// - Parameters:
@@ -149,10 +82,10 @@ final public class PhotoRequests: Paginable {
         var parameters: Parameters = [:]
         if let location = photo.location {
             var locationParameters: [String: Any] = [:]
-            if let latitude = location.positon?.latitude {
+            if let latitude = location.position?.latitude {
                 locationParameters["latitude"] = latitude
             }
-            if let longitude = location.positon?.longitude {
+            if let longitude = location.position?.longitude {
                 locationParameters["longitude"] = longitude
             }
             if let name = location.name {
