@@ -190,8 +190,6 @@ class UnsplasherTests: XCTestCase {
             photo.location?.city = "A Coruña"
             photo.exif?.make = "Nikon"
             photo.exif?.model = "D520"
-            photo.exif?.exposureTime = "1/1000s"
-            photo.exif?.aperture = "f/2.2"
             Unsplash.shared.photos.update(photo, completion: { result in
                 XCTAssertTrue(result.isSuccess, "Error updating photo with id: \(id)")
                 expectation.fulfill()
