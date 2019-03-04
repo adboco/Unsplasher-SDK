@@ -111,7 +111,7 @@ class CollectionRequestsTests: RequestsTests {
     }
     
     func testRemovePhotoFromCollection() {
-        let expectation = self.expectation(description: "Add Photo to Collection")
+        let expectation = self.expectation(description: "Remove Photo from Collection")
         
         let photoId = "dtCTfjTEOgg"
         let id: UInt32 = 4378364

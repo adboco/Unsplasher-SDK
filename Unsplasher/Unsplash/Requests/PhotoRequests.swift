@@ -81,48 +81,10 @@ final public class PhotoRequests: Paginable {
         }
         var parameters: Parameters = [:]
         if let location = photo.location {
-            var locationParameters: [String: Any] = [:]
-            if let latitude = location.position?.latitude {
-                locationParameters["latitude"] = latitude
-            }
-            if let longitude = location.position?.longitude {
-                locationParameters["longitude"] = longitude
-            }
-            if let name = location.name {
-                locationParameters["name"] = name
-            }
-            if let city = location.city {
-                locationParameters["city"] = city
-            }
-            if let country = location.country {
-                locationParameters["country"] = country
-            }
-            if let confidential = location.confidential {
-                locationParameters["confidential"] = confidential
-            }
-            parameters["location"] = locationParameters
+            parameters["location"] = location.params()
         }
         if let exif = photo.exif {
-            var exifParameters: [String: Any] = [:]
-            if let make = exif.make {
-                exifParameters["make"] = make
-            }
-            if let model = exif.model {
-                exifParameters["model"] = model
-            }
-            if let exposureTime = exif.exposureTime {
-                exifParameters["exposure_time"] = exposureTime
-            }
-            if let aperture = exif.aperture {
-                exifParameters["aperture_value"] = aperture
-            }
-            if let focal = exif.focalLength {
-                exifParameters["focal_length"] = focal
-            }
-            if let iso = exif.iso {
-                exifParameters["iso_speed_ratings"] = iso
-            }
-            parameters["exif"] = exifParameters
+            parameters["exif"] = exif.params()
         }
         let url = Unsplash.photosURLString + "/\(photo.id)"
         self.manager.request(url: url, method: .put, parameters: parameters, expectedType: Photo.self, completion: completion)
@@ -271,6 +233,64 @@ final public class PhotoRequests: Paginable {
         }
         let url = Unsplash.photosURLString + "/\(photoId)" + "/statistics"
         self.manager.request(url: url, parameters: parameters, expectedType: Statistics.self, completion: completion)
+    }
+    
+}
+
+// MARK: - Location Extension
+
+fileprivate extension Location {
+    
+    func params() -> [String: Any] {
+        var locationParameters: [String: Any] = [:]
+        if let latitude = self.position?.latitude {
+            locationParameters["latitude"] = latitude
+        }
+        if let longitude = self.position?.longitude {
+            locationParameters["longitude"] = longitude
+        }
+        if let name = self.name {
+            locationParameters["name"] = name
+        }
+        if let city = self.city {
+            locationParameters["city"] = city
+        }
+        if let country = self.country {
+            locationParameters["country"] = country
+        }
+        if let confidential = self.confidential {
+            locationParameters["confidential"] = confidential
+        }
+        return locationParameters
+    }
+    
+}
+
+// MARK: - Exif Extension
+
+fileprivate extension Exif {
+    
+    func params() -> [String: Any] {
+        var exifParameters: [String: Any] = [:]
+        if let make = self.make {
+            exifParameters["make"] = make
+        }
+        if let model = self.model {
+            exifParameters["model"] = model
+        }
+        if let exposureTime = self.exposureTime {
+            exifParameters["exposure_time"] = exposureTime
+        }
+        if let aperture = self.aperture {
+            exifParameters["aperture_value"] = aperture
+        }
+        if let focal = self.focalLength {
+            exifParameters["focal_length"] = focal
+        }
+        if let iso = self.iso {
+            exifParameters["iso_speed_ratings"] = iso
+        }
+        return exifParameters
     }
     
 }
