@@ -8,6 +8,7 @@
 ![swift version](https://img.shields.io/badge/swift-4.2-orange.svg)
 [![cocoapods](https://img.shields.io/cocoapods/v/UnsplasherSDK.svg?style=flat)](https://cocoapods.org/pods/UnsplasherSDK)
 [![license](https://img.shields.io/cocoapods/l/KeyboardSwift.svg?style=flat)](https://cocoapods.org/pods/KeyboardSwift)
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fadboco%2FUnsplasher-SDK.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fadboco%2FUnsplasher-SDK?ref=badge_shield)
 
 An Unsplash API client written in Swift. It supports user authentication, likes, manage collections and every feature of the [official API](https://unsplash.com/documentation).
 
@@ -294,3 +295,6 @@ This project is funded and maintained by [adboco](https://github.com/adboco). It
 
 ## License
 Unsplasher SDK is available under MIT license. See the LICENSE file for more information.
+
+
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fadboco%2FUnsplasher-SDK.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fadboco%2FUnsplasher-SDK?ref=badge_large)
