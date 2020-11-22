@@ -25,6 +25,7 @@ public struct Photo: Codable {
     public var likedByUser: Bool?
     public var location: Location?
     public let currentUserCollections: [Collection]?
+    public var blurhash: String?
     
     public var color: UIColor? {
         guard let colorString = hexColor else {
@@ -49,6 +50,7 @@ public struct Photo: Codable {
         case likedByUser = "liked_by_user"
         case location
         case currentUserCollections = "current_user_collections"
+        case blurhash = "blur_hash"
     }
     
 }
